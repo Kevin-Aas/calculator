@@ -1,0 +1,45 @@
+body {
+    display: flex;
+    justify-content: center;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: whitesmoke;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    margin: 100px;
+    padding: 12px;
+    width: 500px;
+    height: 600px;
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 2px;
+    background-color: white;
+}
+
+.display {
+    display: flex;
+    justify-content: flex-end;
+    margin: 30px;
+    font-size: 56px;
+    border-style: inset;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+    margin-top: 100px;
+}
+
+.row {
+    display: flex;
+}
+
+button {
+    margin: 2px;
+    flex-basis: 20px;
+    flex-grow: 1;
+    height: 75px;
+}
