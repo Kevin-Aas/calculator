@@ -42,4 +42,6 @@ button {
     flex-basis: 20px;
     flex-grow: 1;
     height: 75px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
 }
