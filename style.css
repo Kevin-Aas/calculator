@@ -28,6 +28,7 @@ h1 {
 .display {
     display: flex;
     justify-content: flex-end;
+    padding-right: 8px;
     margin: 30px;
     font-size: 56px;
     border-style: solid;
