@@ -22,23 +22,24 @@ h1 {
     border-style: solid;
     border-radius: 18px;
     border-width: 2px;
-    background-color: white;
+    background-color: rgb(78, 91, 106);
 }
 
 .display {
     display: flex;
     justify-content: flex-end;
     padding-right: 8px;
-    margin: 30px;
+    margin: 30px 15px 30px 15px;
     font-size: 56px;
     border-style: solid;
     border-radius: 8px;
+    background-color: white;
 }
 
 .buttons {
     display: flex;
     flex-direction: column;
-    margin: 30px;
+    margin: 30px 15px 30px 15px;
     margin-top: 0px;
 }
 
