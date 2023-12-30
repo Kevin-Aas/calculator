@@ -17,7 +17,7 @@ function multiply(a, b) {
     return a*b;
 };
 function divide(a, b) {
-    return Math.round(a/b * 10000)/10000;
+    return Math.round(a/b * 100)/100;
 };
 
 // Operation function:
@@ -85,10 +85,21 @@ operations.forEach(function (btn) {
 // Add equals listener
 let equals = document.querySelector("#equals");
 equals.addEventListener('click', (e) => {
+    if (num1 == null) {
+        if (display_val == null) {
+            updateDisplayAnswer(answer);
+        }
+        else {
+            updateDisplayAnswer(display_val);
+            answer = display_val;
+        }
+        reset();
+        return;
+    }
     let values = display_val.split('+').join(',').split('-').join(',').split('*').join(',').split('/').join(',').split(',');
     num2 = values[1];
     display_val = operate(parseFloat(num1), parseFloat(num2), operator);
-    updateDisplay(display_val);
+    updateDisplayAnswer(display_val);
     answer = display_val;
     reset();
 });
@@ -101,9 +112,16 @@ clear.addEventListener('click', () => {
 });
 
 function updateDisplay (value) {
-    let display = document.querySelector(".display");
+    let display = document.querySelector("#display_value");
     display.textContent = value;
+    display.style.color = 'black';
 };
+
+function updateDisplayAnswer (value) {
+    let display = document.querySelector("#display_value");
+    display.textContent = value;
+    display.style.color = 'gray';
+}
 
 function reset () {
     num1 = null;
