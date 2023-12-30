@@ -64,6 +64,13 @@ equals.addEventListener('click', (e) => {
     display_val = 0;
 });
 
+// Add clear listener
+let clear = document.querySelector("#clear");
+clear.addEventListener('click', () => {
+    updateDisplay(0);
+    display_val = 0;
+});
+
 function updateDisplay (value) {
     let display = document.querySelector(".display");
     display.textContent = value;
