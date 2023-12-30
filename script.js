@@ -52,7 +52,7 @@ numbers.forEach(function (btn) {
 let operations = document.querySelectorAll(".operation");
 operations.forEach(function (btn) {
     btn.addEventListener('click', (e) => {
-        if (answer != null) {
+        if (answer != null && display_val == null) {
             num1 = answer;
             operator = e.target.textContent;
             display_val = 'Ans' + operator;
