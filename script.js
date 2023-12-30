@@ -61,6 +61,7 @@ equals.addEventListener('click', (e) => {
     num2 = values[1];
     display_val = operate(parseInt(num1), parseInt(num2), operator);
     updateDisplay(display_val);
+    display_val = 0;
 });
 
 function updateDisplay (value) {
