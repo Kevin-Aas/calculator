@@ -47,10 +47,21 @@ numbers.forEach(function (btn) {
 let operations = document.querySelectorAll(".operation");
 operations.forEach(function (btn) {
     btn.addEventListener('click', (e) => {
-        num1 = display_val;
-        operator = e.target.textContent;
-        display_val = display_val + operator;
-        updateDisplay(display_val);
+        if (num1 == null) {
+            num1 = display_val;
+            operator = e.target.textContent;
+            display_val = display_val + operator;
+            updateDisplay(display_val);
+        }
+        else {
+            let values = display_val.split('+').join(',').split('-').join(',').split('*').join(',').split('/').join(',').split(',');
+            num2 = values[1];
+            display_val = operate(parseInt(num1), parseInt(num2), operator);
+            num1 = display_val;
+            new_operator = e.target.textContent;
+            display_val = display_val + operator;
+            updateDisplay(display_val);
+        }
     });
 });
 
@@ -61,17 +72,24 @@ equals.addEventListener('click', (e) => {
     num2 = values[1];
     display_val = operate(parseInt(num1), parseInt(num2), operator);
     updateDisplay(display_val);
-    display_val = 0;
+    reset();
 });
 
 // Add clear listener
 let clear = document.querySelector("#clear");
 clear.addEventListener('click', () => {
     updateDisplay(0);
-    display_val = 0;
+    reset();
 });
 
 function updateDisplay (value) {
     let display = document.querySelector(".display");
     display.textContent = value;
 };
+
+function reset () {
+    num1 = null;
+    num2 = null;
+    operator = null;
+    display_val = 0;
+}
