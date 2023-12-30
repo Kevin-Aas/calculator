@@ -3,7 +3,8 @@ let num1;
 let num2;
 let operator;
 
-let display_val = 0;
+let display_val;
+let answer;
 
 // Basic math operations:
 function add(a, b) {
@@ -16,7 +17,7 @@ function multiply(a, b) {
     return a*b;
 };
 function divide(a, b) {
-    return a/b;
+    return Math.round(a/b * 10000)/10000;
 };
 
 // Operation function:
@@ -33,7 +34,11 @@ function operate(num1, num2, operator) {
 let numbers = document.querySelectorAll(".num");
 numbers.forEach(function (btn) {
     btn.addEventListener('click', (e) => {
-        if (display_val === 0) {
+        if (display_val == null) {
+            if (e.target.textContent == '0') {
+                // No starting zero
+                return;
+            }
             display_val = e.target.textContent;
         }
         else {
@@ -47,6 +52,18 @@ numbers.forEach(function (btn) {
 let operations = document.querySelectorAll(".operation");
 operations.forEach(function (btn) {
     btn.addEventListener('click', (e) => {
+        if (answer != null) {
+            num1 = answer;
+            operator = e.target.textContent;
+            display_val = 'Ans' + operator;
+            updateDisplay(display_val);
+            answer = null;
+            return;
+        }
+        if (display_val == null) {
+            // dont do anything if no number is set
+            return;
+        }
         if (num1 == null) {
             num1 = display_val;
             operator = e.target.textContent;
@@ -56,9 +73,9 @@ operations.forEach(function (btn) {
         else {
             let values = display_val.split('+').join(',').split('-').join(',').split('*').join(',').split('/').join(',').split(',');
             num2 = values[1];
-            display_val = operate(parseInt(num1), parseInt(num2), operator);
+            display_val = operate(parseFloat(num1), parseFloat(num2), operator);
             num1 = display_val;
-            new_operator = e.target.textContent;
+            operator = e.target.textContent; // the new operator
             display_val = display_val + operator;
             updateDisplay(display_val);
         }
@@ -70,8 +87,9 @@ let equals = document.querySelector("#equals");
 equals.addEventListener('click', (e) => {
     let values = display_val.split('+').join(',').split('-').join(',').split('*').join(',').split('/').join(',').split(',');
     num2 = values[1];
-    display_val = operate(parseInt(num1), parseInt(num2), operator);
+    display_val = operate(parseFloat(num1), parseFloat(num2), operator);
     updateDisplay(display_val);
+    answer = display_val;
     reset();
 });
 
@@ -91,5 +109,5 @@ function reset () {
     num1 = null;
     num2 = null;
     operator = null;
-    display_val = 0;
+    display_val = null;
 }
