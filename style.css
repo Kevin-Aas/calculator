@@ -62,3 +62,13 @@ button {
 .num {
     background-color: #cdf9e7;
 }
+
+#n0 {
+    flex-grow: 2;
+    flex-basis: 40px;
+}
+
+#equals {
+    flex-grow: 2;
+    flex-basis: 40px;
+}
