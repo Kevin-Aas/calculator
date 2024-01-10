@@ -99,6 +99,14 @@ equals.addEventListener('click', (e) => {
     let values = display_val.split('+').join(',').split('-').join(',').split('*').join(',').split('/').join(',').split(',');
     num2 = values[1];
     display_val = operate(parseFloat(num1), parseFloat(num2), operator);
+    // Round the final value
+    if (display_val.toString().length < 6) {
+        display_val = Math.round(display_val * 100)/100;
+    }
+    else {
+        display_val = Math.round(display_val);
+    }
+    // Updated display and answer
     updateDisplayAnswer(display_val);
     answer = display_val;
     reset();
