@@ -74,6 +74,12 @@ operations.forEach(function (btn) {
         else {
             let values = display_val.split('+').join(',').split('-').join(',').split('*').join(',').split('/').join(',').split(',');
             num2 = values[1];
+            if (isNaN(parseFloat(num2))) {
+                operator = e.target.textContent;
+                display_val = display_val.slice(0, -1) + operator;
+                updateDisplay(display_val);
+                return;
+            }
             display_val = operate(parseFloat(num1), parseFloat(num2), operator);
             num1 = display_val;
             operator = e.target.textContent; // the new operator
@@ -150,5 +156,8 @@ buttons.forEach(function(btn) {
     });
     btn.addEventListener('mouseup', () => {
         btn.style.backgroundColor = '';
-    }); 
+    });
+    btn.addEventListener('mouseout', () => {
+        btn.style.backgroundColor = '';
+    });
 });
