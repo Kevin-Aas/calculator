@@ -5,6 +5,7 @@ let operator;
 
 let display_val;
 let answer;
+let full = false;
 
 // Basic math operations:
 function add(a, b) {
@@ -17,7 +18,7 @@ function multiply(a, b) {
     return a*b;
 };
 function divide(a, b) {
-    return Math.round(a/b * 100)/100;
+    return Math.round(a/b * 1e9)/1e9;
 };
 
 // Operation function:
@@ -41,7 +42,7 @@ numbers.forEach(function (btn) {
             }
             display_val = e.target.textContent;
         }
-        else {
+        else if (!full) {
             display_val = display_val + e.target.textContent;
         }
         updateDisplay(display_val);
@@ -61,7 +62,7 @@ operations.forEach(function (btn) {
             return;
         }
         if (display_val == null) {
-            // dont do anything if no number is set
+            // do nothing if no number is set
             return;
         }
         if (num1 == null) {
@@ -100,8 +101,8 @@ equals.addEventListener('click', (e) => {
     num2 = values[1];
     display_val = operate(parseFloat(num1), parseFloat(num2), operator);
     // Round the final value
-    if (display_val.toString().length < 6) {
-        display_val = Math.round(display_val * 100)/100;
+    if (display_val.toString().length < 12) {
+        display_val = Math.round(display_val * 1e9)/1e9;
     }
     else {
         display_val = Math.round(display_val);
@@ -120,6 +121,9 @@ clear.addEventListener('click', () => {
 });
 
 function updateDisplay (value) {
+    if (value.toString().length > 12) {
+        full = true;
+    }
     let display = document.querySelector("#display_value");
     display.textContent = value;
     display.style.color = 'black';
@@ -136,4 +140,15 @@ function reset () {
     num2 = null;
     operator = null;
     display_val = null;
+    full = false;
 }
+
+let buttons = document.querySelectorAll('button');
+buttons.forEach(function(btn) {
+    btn.addEventListener('mousedown', () => {
+        btn.style.backgroundColor = '#d5d5d5';
+    });
+    btn.addEventListener('mouseup', () => {
+        btn.style.backgroundColor = '';
+    }); 
+});
