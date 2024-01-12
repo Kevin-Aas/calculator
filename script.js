@@ -6,6 +6,7 @@ let operator;
 let display_val;
 let answer;
 let full = false;
+let dot_exists = false;
 
 // Basic math operations:
 function add(a, b) {
@@ -98,6 +99,7 @@ operations.forEach(function (btn) {
             display_val = parseFloat(display_val).toExponential(2);
             updateDisplay(display_val);
         }
+        dot_exists = false;
     });
 });
 
@@ -143,6 +145,21 @@ clear.addEventListener('click', () => {
     reset();
 });
 
+// Add dot listener
+let dot = document.querySelector("#dot");
+dot.addEventListener('click', () => {
+    if (!dot_exists && !full) {
+        if (display_val == null) {
+            display_val = '.'
+        }
+        else {
+            display_val = display_val + '.';
+        }
+        updateDisplay(display_val);
+        dot_exists = true;
+    }
+});
+
 function updateDisplay (value) {
     if (value.toString().length > 10) {
         full = true;
@@ -154,7 +171,12 @@ function updateDisplay (value) {
 
 function updateDisplayAnswer (value) {
     let display = document.querySelector("#top_display_value");
-    display.textContent = value;
+    if (isNaN(value)) {
+        display.textContent = 'Error';
+    }
+    else {
+        display.textContent = value;
+    }
     display.style.color = 'gray';
 }
 
@@ -164,6 +186,7 @@ function reset () {
     operator = null;
     display_val = null;
     full = false;
+    dot_exists = false;
 }
 
 let buttons = document.querySelectorAll('button');
