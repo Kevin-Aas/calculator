@@ -54,7 +54,7 @@ numbers.forEach(function (btn) {
 let operations = document.querySelectorAll(".operation");
 operations.forEach(function (btn) {
     btn.addEventListener('click', (e) => {
-        if (answer != null && display_val == null) {
+        if (answer != null && display_val == null && !isNaN(answer)) {
             num1 = answer;
             operator = e.target.textContent;
             display_val = 'Ans' + operator;
@@ -108,7 +108,8 @@ let equals = document.querySelector("#equals");
 equals.addEventListener('click', (e) => {
     if (num1 == null) {
         if (display_val == null) {
-            if (answer != null) {
+            if (answer != null && !isNaN(answer)) {
+                alert(answer)
                 updateDisplayAnswer(answer);
             }
         }
