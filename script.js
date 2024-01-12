@@ -75,15 +75,27 @@ operations.forEach(function (btn) {
             let values = display_val.split('+').join(',').split('-').join(',').split('*').join(',').split('/').join(',').split(',');
             num2 = values[1];
             if (isNaN(parseFloat(num2))) {
+                // If a new operation is pressed before a new number
                 operator = e.target.textContent;
                 display_val = display_val.slice(0, -1) + operator;
                 updateDisplay(display_val);
-                return;
             }
-            display_val = operate(parseFloat(num1), parseFloat(num2), operator);
-            num1 = display_val;
-            operator = e.target.textContent; // the new operator
-            display_val = display_val + operator;
+            else {
+                display_val = operate(parseFloat(num1), parseFloat(num2), operator);
+                num1 = display_val;
+                operator = e.target.textContent; // the new operator
+                if (display_val.toString().length > 12) {
+                    display_val = parseFloat(display_val).toExponential(2);
+                }
+                display_val = display_val + operator;
+                updateDisplay(display_val);
+            }
+        }
+        if (display_val.toString().length < 13) {
+            full = false;
+        }
+        else {
+            display_val = parseFloat(display_val).toExponential(2);
             updateDisplay(display_val);
         }
     });
@@ -94,7 +106,9 @@ let equals = document.querySelector("#equals");
 equals.addEventListener('click', (e) => {
     if (num1 == null) {
         if (display_val == null) {
-            updateDisplayAnswer(answer);
+            if (answer != null) {
+                updateDisplayAnswer(answer);
+            }
         }
         else {
             updateDisplayAnswer(display_val);
@@ -113,6 +127,9 @@ equals.addEventListener('click', (e) => {
     else {
         display_val = Math.round(display_val);
     }
+    if (display_val.toString().length > 12) {
+        display_val = parseFloat(display_val).toExponential(2);
+    }
     // Updated display and answer
     updateDisplayAnswer(display_val);
     answer = display_val;
@@ -127,16 +144,16 @@ clear.addEventListener('click', () => {
 });
 
 function updateDisplay (value) {
-    if (value.toString().length > 12) {
+    if (value.toString().length > 10) {
         full = true;
     }
-    let display = document.querySelector("#display_value");
+    let display = document.querySelector("#top_display_value");
     display.textContent = value;
     display.style.color = 'black';
 };
 
 function updateDisplayAnswer (value) {
-    let display = document.querySelector("#display_value");
+    let display = document.querySelector("#top_display_value");
     display.textContent = value;
     display.style.color = 'gray';
 }
