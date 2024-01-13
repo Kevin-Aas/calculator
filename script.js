@@ -49,7 +49,7 @@ numbers.forEach(function (btn) {
             if (e.target.textContent == '0' && num1 != null) {
                 let values = display_val.split('+').join(',').split('-').join(',').split('*').join(',').split('/').join(',').split(',');
                 num2 = values[1];
-                if (num2.toString().length < 2) {
+                if (num2.toString().length < 1) {
                     updateDisplay(display_val + e.target.textContent)
                     return;
                 }
