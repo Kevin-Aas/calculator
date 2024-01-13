@@ -46,7 +46,13 @@ numbers.forEach(function (btn) {
             display_val = e.target.textContent;
         }
         else if (!full) {
-            display_val = display_val + e.target.textContent;
+            if (e.target.textContent == '0') {
+                updateDisplay(display_val + e.target.textContent)
+                return;
+            }
+            else {
+                display_val = display_val + e.target.textContent;
+            }
         }
         updateDisplay(display_val);
     });
@@ -192,7 +198,7 @@ function updateDisplay (value) {
 
 function updateDisplayAnswer (value) {
     let display = document.querySelector("#top_display_value");
-    if (isNaN(value)) {
+    if (isNaN(value) || value == 'Infinity') {
         display.textContent = 'Error';
     }
     else {
