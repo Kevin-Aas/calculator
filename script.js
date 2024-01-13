@@ -7,6 +7,8 @@ let display_val;
 let answer;
 let full = false;
 let dot_exists = false;
+let num1_minus = false;
+let num2_minus = false;
 
 // Basic math operations:
 function add(a, b) {
@@ -109,7 +111,6 @@ equals.addEventListener('click', (e) => {
     if (num1 == null) {
         if (display_val == null) {
             if (answer != null && !isNaN(answer)) {
-                alert(answer)
                 updateDisplayAnswer(answer);
             }
         }
@@ -144,6 +145,7 @@ let clear = document.querySelector("#clear");
 clear.addEventListener('click', () => {
     updateDisplay(0);
     reset();
+    answer = undefined;
 });
 
 // Add dot listener
@@ -158,6 +160,24 @@ dot.addEventListener('click', () => {
         }
         updateDisplay(display_val);
         dot_exists = true;
+    }
+});
+
+// Add pluss/minus listener
+let pm = document.querySelector("#pm");
+pm.addEventListener('click', () => {
+    if (num1 == null && display_val != null) {
+        // No operation is pressed
+        if (num1_minus == false) {
+            display_val = '-' + display_val;
+            updateDisplay(display_val);
+            num1_minus = true;
+        }
+        else {
+            display_val = display_val.slice(1);
+            updateDisplay(display_val);
+            num1_minus = false;
+        }
     }
 });
 
@@ -188,6 +208,8 @@ function reset () {
     display_val = null;
     full = false;
     dot_exists = false;
+    num1_minus = false;
+    num2_minus = false;
 }
 
 let buttons = document.querySelectorAll('button');
