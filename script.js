@@ -46,9 +46,16 @@ numbers.forEach(function (btn) {
             display_val = e.target.textContent;
         }
         else if (!full) {
-            if (e.target.textContent == '0') {
-                updateDisplay(display_val + e.target.textContent)
-                return;
+            if (e.target.textContent == '0' && num1 != null) {
+                let values = display_val.split('+').join(',').split('-').join(',').split('*').join(',').split('/').join(',').split(',');
+                num2 = values[1];
+                if (num2.toString().length < 2) {
+                    updateDisplay(display_val + e.target.textContent)
+                    return;
+                }
+                else {
+                    display_val = display_val + e.target.textContent;
+                }
             }
             else {
                 display_val = display_val + e.target.textContent;
