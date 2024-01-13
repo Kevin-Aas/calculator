@@ -237,3 +237,82 @@ buttons.forEach(function(btn) {
         btn.style.backgroundColor = '';
     });
 });
+
+window.onkeydown = function(e){
+    let keyName = e.key;
+    let choice
+    switch(keyName){
+        case '1':
+            choice = document.querySelector('#n1');
+            choice.click();
+            break;
+        case '2':
+            choice = document.querySelector('#n2');
+            choice.click();
+            break;
+        case '3':
+            choice = document.querySelector('#n3');
+            choice.click();
+            break;
+        case'4':
+            choice = document.querySelector('#n4');
+            choice.click();
+            break;
+        case '5':
+            choice = document.querySelector('#n5');
+            choice.click();
+            break;
+        case '6':
+            choice = document.querySelector('#n6');
+            choice.click();
+            break;
+        case '7':
+            choice = document.querySelector('#n7');
+            choice.click();
+            break;
+        case '8':
+            choice = document.querySelector('#n8');
+            choice.click();
+            break;
+        case '9':
+            choice = document.querySelector('#n9');
+            choice.click();
+            break;
+        case '0':
+            choice = document.querySelector('#n0');
+            choice.click();
+            break;
+        case 'Escape':
+            choice = document.querySelector('#clear');
+            choice.click();
+            break;
+        case '/':
+            choice = document.querySelector('#divide');
+            choice.click();
+            break;
+        case '*':
+            choice = document.querySelector('#multiply');
+            choice.click();
+            break;
+        case '-':
+            choice = document.querySelector('#subtract');
+            choice.click();
+            break;
+        case '+':
+            choice = document.querySelector('#add');
+            choice.click();
+            break;
+        case '.':
+            choice = document.querySelector('#dot');
+            choice.click();
+            break;
+        case 'Enter':
+            choice = document.querySelector('#equals');
+            choice.click();
+            break;
+        case '|':
+            choice = document.querySelector('#pm');
+            choice.click();
+            break;
+    }
+}
