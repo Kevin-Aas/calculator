@@ -22,7 +22,7 @@ h1 {
     border-style: solid;
     border-radius: 18px;
     border-width: 2px;
-    background-color: rgb(78, 91, 106);
+    background-color: #4F6F52;
 }
 
 .display {
@@ -55,12 +55,12 @@ button {
     font-family: 'Courier New', Courier, monospace;
     font-size: 18px;
     font-weight: 700;
-    background-color: #effff6;
+    background-color: #fab253;
     border-radius: 8px;
 }
 
 .num {
-    background-color: #cdf9e7;
+    background-color: #D2E3C8;
 }
 
 #n0 {
